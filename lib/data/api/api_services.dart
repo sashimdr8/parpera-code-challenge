@@ -13,4 +13,7 @@ abstract class ApiService {
   @GET(ApiEndPoints.launchList)
   Future<HttpResponse<List<LaunchModel>>> getLaunchList();
 
+  @GET(ApiEndPoints.launchList)
+  Future<HttpResponse<LaunchModel>> getLaunchDetail(
+      @Query("id") String id);
 }

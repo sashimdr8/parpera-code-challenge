@@ -1,15 +1,13 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
+import 'package:spacex_app/data/local/app_preferences.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:spacex_app/data/local/app_preferences.dart';
 import 'package:spacex_app/res/app_strings.dart';
 import 'package:spacex_app/ui/launchList/model/launch_model.dart';
 import 'package:spacex_app/ui/launchList/repository/launch_list_repository.dart';
-
 part 'launch_list_event.dart';
-
 part 'launch_list_state.dart';
 
 class LaunchListBloc extends Bloc<LaunchListEvent, LaunchListState> {

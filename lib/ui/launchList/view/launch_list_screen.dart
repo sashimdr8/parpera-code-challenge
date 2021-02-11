@@ -11,6 +11,7 @@ import 'package:spacex_app/utils/view_utils.dart';
 import 'package:spacex_app/utils/app_contracts.dart';
 import 'package:spacex_app/res/app_colors.dart';
 import 'package:spacex_app/utils/date_utils.dart';
+import 'package:spacex_app/ui/launchDetails/view/launch_detail_screen.dart';
 
 class LaunchListScreen extends StatefulWidget {
   @override
@@ -67,50 +68,60 @@ class _LaunchListScreenState extends State<LaunchListScreen> {
 
   /// builds Launches list item
   Widget _buildSingleLaunchItem(LaunchModel launchModel) {
-    return Container(
-      margin: EdgeInsets.fromLTRB(0, 0, AppSizes.size10, AppSizes.size10),
-      color: AppColors.imageBackground,
-      child: Column(
-        children: <Widget>[
-          Container(
-            padding: EdgeInsets.only(top: AppSizes.size10),
-            child: Image(
-              image: launchModel.links.patch.small.isEmpty
-                  ? AssetImage(AppContracts.PLACE_HOLDER_IMAGE_PATH)
-                  : NetworkImage(launchModel.links.patch.small),
-              height: AppSizes.size120,
-              fit: BoxFit.cover,
-            ),
+    return InkWell(
+        onTap: () {
+          Navigator.push(
+              context,
+              new MaterialPageRoute(
+                  builder: (context) => new LaunchDetailScreen(
+                      id: launchModel.id,
+                      launchName: launchModel.name,
+                      buildContext: context)));
+        },
+        child: Container(
+          margin: EdgeInsets.fromLTRB(0, 0, AppSizes.size10, AppSizes.size10),
+          color: AppColors.imageBackground,
+          child: Column(
+            children: <Widget>[
+              Container(
+                padding: EdgeInsets.only(top: AppSizes.size10),
+                child: Image(
+                  image: launchModel.links.patch.small.isEmpty
+                      ? AssetImage(AppContracts.PLACE_HOLDER_IMAGE_PATH)
+                      : NetworkImage(launchModel.links.patch.small),
+                  height: AppSizes.size120,
+                  fit: BoxFit.cover,
+                ),
+              ),
+              Container(
+                alignment: Alignment.bottomLeft,
+                child: Padding(
+                    padding: EdgeInsets.all(AppSizes.size12),
+                    child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Text(launchModel.name,
+                              style: TextStyle(
+                                  fontSize: AppSizes.txtSize20,
+                                  fontWeight: FontWeight.bold)),
+                          Text(
+                              launchModel.dateLocal.isNotEmpty
+                                  ? "LaunchDate : " +
+                                      formatDateString(launchModel.dateLocal)
+                                  : "",
+                              style: TextStyle(
+                                  fontSize: AppSizes.txtSize15,
+                                  fontWeight: FontWeight.normal)),
+                          Text(getStatusOfMission(launchModel),
+                              style: TextStyle(
+                                  fontSize: AppSizes.txtSize15,
+                                  fontWeight: FontWeight.normal))
+                        ])),
+              )
+            ],
           ),
-          Container(
-            alignment: Alignment.bottomLeft,
-            child: Padding(
-                padding: EdgeInsets.all(AppSizes.size12),
-                child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Text(launchModel.name,
-                          style: TextStyle(
-                              fontSize: AppSizes.txtSize20,
-                              fontWeight: FontWeight.bold)),
-                      Text(
-                          launchModel.dateLocal.isNotEmpty
-                              ? "LaunchDate : " +
-                                  formatDateString(launchModel.dateLocal)
-                              : "",
-                          style: TextStyle(
-                              fontSize: AppSizes.txtSize15,
-                              fontWeight: FontWeight.normal)),
-                      Text(getStatusOfMission(launchModel),
-                          style: TextStyle(
-                              fontSize: AppSizes.txtSize15,
-                              fontWeight: FontWeight.normal))
-                    ])),
-          )
-        ],
-      ),
-    );
+        ));
   }
 
   String getStatusOfMission(LaunchModel launchModel) {
