@@ -18,7 +18,7 @@ class LaunchDetailLoading extends LaunchDetailState {
 }
 
 class LaunchDetailLoaded extends LaunchDetailState {
-  final LaunchModel launchModel;
+  final LaunchDetailModel launchModel;
 
   LaunchDetailLoaded(this.launchModel);
 

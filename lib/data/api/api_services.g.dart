@@ -37,7 +37,7 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<HttpResponse<LaunchModel>> getLaunchDetail(id) async {
+  Future<HttpResponse<LaunchDetailModel>> getLaunchDetail(id) async {
     ArgumentError.checkNotNull(id, 'id');
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{r'id': id};
@@ -50,7 +50,7 @@ class _ApiService implements ApiService {
             extra: _extra,
             baseUrl: baseUrl),
         data: _data);
-    final value = LaunchModel.fromJson(_result.data);
+    final value = LaunchDetailModel.fromJson(_result.data);
     final httpResponse = HttpResponse(value, _result);
     return httpResponse;
   }

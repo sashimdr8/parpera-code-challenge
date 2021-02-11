@@ -11,6 +11,7 @@ import 'package:spacex_app/utils/view_utils.dart';
 import 'package:spacex_app/utils/app_contracts.dart';
 import 'package:spacex_app/res/app_colors.dart';
 import 'package:spacex_app/utils/date_utils.dart';
+import 'package:spacex_app/utils/app_utils.dart';
 import 'package:spacex_app/ui/launchDetails/view/launch_detail_screen.dart';
 
 class LaunchListScreen extends StatefulWidget {
@@ -124,15 +125,5 @@ class _LaunchListScreenState extends State<LaunchListScreen> {
         ));
   }
 
-  String getStatusOfMission(LaunchModel launchModel) {
-    String status = "Status : ";
-    if (launchModel.success)
-      status += "Success";
-    else if (launchModel.upcoming) {
-      status += "Upcoming";
-    } else {
-      status += "Failed";
-    }
-    return status;
-  }
+
 }

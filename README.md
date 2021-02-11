@@ -1,16 +1,21 @@
-# spacex_app
+# SpaceX App
 
-A new Flutter project.
+SpaceX Launches Demo App .
 
-## Getting Started
+Install Instructions
 
-This project is a starting point for a Flutter application.
+1. Go to the path <project>/build/app/outputs/apk/debug/app-debug.apk
+2. Copy the apk file in android app.
+3. Double click the apk file and click install.
+4. App will be installed. Enjoy.
 
-A few resources to get you started if this is your first Flutter project:
+Test Instructions
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+1. Make sure you have a internet connection.
+2. Run 'flutter pub run build_runner build' in terminal for retrofit data classes to be build
+3. Install and Run the app in the device/emulator.
+4. Load app and observe list and open the Detail page on click on list item
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Caveats
+
+1. Run flutter pub get and flutter pub run build_runner build before installing the application

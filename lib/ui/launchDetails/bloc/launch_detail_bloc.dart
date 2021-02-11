@@ -7,6 +7,7 @@ import 'package:spacex_app/data/local/app_preferences.dart';
 import 'package:spacex_app/res/app_strings.dart';
 import 'package:spacex_app/ui/launchList/model/launch_model.dart';
 import 'package:spacex_app/ui/launchDetails/repository/launch_detail_repository.dart';
+import 'package:spacex_app/ui/launchDetails/model/launch_detail_model.dart';
 
 part 'launch_detail_event.dart';
 
