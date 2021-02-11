@@ -18,11 +18,13 @@ class LaunchDetailScreen extends StatefulWidget {
   final BuildContext buildContext;
   final String id;
   final String launchName;
+  final LaunchModel launchModel;
 
   const LaunchDetailScreen(
       {Key key,
       @required this.id,
       @required this.launchName,
+      @required this.launchModel,
       @required this.buildContext})
       : super(key: key);
 
@@ -36,7 +38,7 @@ class _LaunchDetailScreenState extends State<LaunchDetailScreen> {
   @override
   void initState() {
     _launchDetailBloc = locator<LaunchDetailBloc>();
-    _launchDetailBloc.getLaunchList(widget.id);
+    _launchDetailBloc.getLaunchDetail(widget.id);
     super.initState();
   }
 
@@ -47,39 +49,25 @@ class _LaunchDetailScreenState extends State<LaunchDetailScreen> {
             appBar: AppBar(
                 title: Center(child: Text(widget.launchName)),
                 backgroundColor: AppColors.colorPrimary),
-            body: BlocProvider<LaunchDetailBloc>(
-                create: (BuildContext providerContext) => _launchDetailBloc,
-                child: BlocBuilder<LaunchDetailBloc, LaunchDetailState>(
-                    builder: (context, state) {
-                  if (state is LaunchDetailLoading) {
-                    return showLoading();
-                  } else if (state is LaunchDetailLoaded) {
-                    return _buildLaunchDetails(state.launchModel);
-                  } else if (state is LaunchDetailFailed) {
-                    SchedulerBinding.instance.addPostFrameCallback((_) {
-                      showAlertDialog(context, state.errorMessage);
-                    });
-                  }
-                  return Container();
-                }))));
+            body: _buildLaunchDetails(widget.launchModel)));
   }
 
-  Widget _buildLaunchDetails(LaunchDetailModel launchModel) {
+  Widget _buildLaunchDetails(LaunchModel launchModel) {
     return Container(
         padding: EdgeInsets.all(AppSizes.horizontalMargin),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Container(
-              padding: EdgeInsets.only(top: AppSizes.size10),
-              child: Image(
-                image: launchModel.links.patch.large.isEmpty
-                    ? AssetImage(AppContracts.PLACE_HOLDER_IMAGE_PATH)
-                    : NetworkImage(launchModel.links.patch.large),
-                height: AppSizes.size120,
-                fit: BoxFit.cover,
-              ),
+            Center(
+              child: Container(
+                  padding: EdgeInsets.only(top: AppSizes.size10),
+                  child: Image(
+                    image: launchModel.links.patch.large.isEmpty
+                        ? AssetImage(AppContracts.PLACE_HOLDER_IMAGE_PATH)
+                        : NetworkImage(launchModel.links.patch.large),
+                    height: AppSizes.size500,
+                  )),
             ),
             Card(
                 child: Container(
@@ -87,8 +75,8 @@ class _LaunchDetailScreenState extends State<LaunchDetailScreen> {
               child: Padding(
                   padding: EdgeInsets.all(AppSizes.size12),
                   child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(launchModel.name,
                             style: TextStyle(
@@ -102,7 +90,11 @@ class _LaunchDetailScreenState extends State<LaunchDetailScreen> {
                             style: TextStyle(
                                 fontSize: AppSizes.txtSize15,
                                 fontWeight: FontWeight.normal)),
-                        Text(getStatus(launchModel),
+                        Text(getStatusOfMission(launchModel),
+                            style: TextStyle(
+                                fontSize: AppSizes.txtSize15,
+                                fontWeight: FontWeight.normal)),
+                        Text("Details : " + launchModel.details,
                             style: TextStyle(
                                 fontSize: AppSizes.txtSize15,
                                 fontWeight: FontWeight.normal))

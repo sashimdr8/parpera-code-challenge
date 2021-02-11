@@ -22,7 +22,7 @@ class LaunchDetailBloc extends Bloc<LaunchDetailEvent, LaunchDetailState> {
     @required this.preferences,
   }) : super(LaunchDetailInitial());
 
-  void getLaunchList(String id) {
+  void getLaunchDetail(String id) {
     add(GetLaunchDetailEvent(id));
   }
 
@@ -33,11 +33,11 @@ class LaunchDetailBloc extends Bloc<LaunchDetailEvent, LaunchDetailState> {
     if (event is LaunchDetailStarted) {
       yield LaunchDetailInitial();
     } else if (event is GetLaunchDetailEvent) {
-      yield* _getLaunchListFromServer(event);
+      yield* _getLaunchDetailFromServer(event);
     }
   }
 
-  Stream<LaunchDetailState> _getLaunchListFromServer(
+  Stream<LaunchDetailState> _getLaunchDetailFromServer(
       GetLaunchDetailEvent event) async* {
     yield LaunchDetailLoading();
     try {
@@ -48,6 +48,7 @@ class LaunchDetailBloc extends Bloc<LaunchDetailEvent, LaunchDetailState> {
         yield LaunchDetailFailed(AppStrings.couldNotLoadLaunch);
       }
     } catch (error, stacktrace) {
+      print(error.toString());
       yield LaunchDetailFailed(
           (error != null) ? error.toString() : AppStrings.couldNotLoadLaunch);
     }

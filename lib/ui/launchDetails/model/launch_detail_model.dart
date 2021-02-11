@@ -8,7 +8,6 @@ class LaunchDetailModel {
   String _rocket;
   bool _success;
   String _details;
-  List<String> _payloads;
   String _launchpad;
   bool _autoUpdate;
   int _flightNumber;
@@ -28,7 +27,6 @@ class LaunchDetailModel {
   String get rocket => _rocket;
   bool get success => _success;
   String get details => _details;
-  List<String> get payloads => _payloads;
   String get launchpad => _launchpad;
   bool get autoUpdate => _autoUpdate;
   int get flightNumber => _flightNumber;
@@ -50,8 +48,7 @@ class LaunchDetailModel {
       String rocket, 
       bool success, 
       String details,
-      List<String> payloads, 
-      String launchpad, 
+      String launchpad,
       bool autoUpdate, 
       int flightNumber,
       String name, 
@@ -70,7 +67,6 @@ class LaunchDetailModel {
     _rocket = rocket;
     _success = success;
     _details = details;
-    _payloads = payloads;
     _launchpad = launchpad;
     _autoUpdate = autoUpdate;
     _flightNumber = flightNumber;
@@ -93,7 +89,6 @@ class LaunchDetailModel {
     _rocket = json["rocket"];
     _success = json["success"];
     _details = json["details"];
-    _payloads = json["payloads"] != null ? json["payloads"].cast<String>() : [];
     _launchpad = json["launchpad"];
     _autoUpdate = json["auto_update"];
     _flightNumber = json["flight_number"];
@@ -119,7 +114,6 @@ class LaunchDetailModel {
     map["rocket"] = _rocket;
     map["success"] = _success;
     map["details"] = _details;
-    map["payloads"] = _payloads;
     map["launchpad"] = _launchpad;
     map["auto_update"] = _autoUpdate;
     map["flight_number"] = _flightNumber;
@@ -217,37 +211,3 @@ class Patch {
   }
 
 }
-
-// class Fairings {
-//   bool _reused;
-//   bool _recoveryAttempt;
-//   bool _recovered;
-//
-//   bool get reused => _reused;
-//   bool get recoveryAttempt => _recoveryAttempt;
-//   bool get recovered => _recovered;
-//
-//   Fairings({
-//       bool reused,
-//       bool recoveryAttempt,
-//       bool recovered}){
-//     _reused = reused;
-//     _recoveryAttempt = recoveryAttempt;
-//     _recovered = recovered;
-// }
-//
-//   Fairings.fromJson(dynamic json) {
-//     _reused = json["reused"];
-//     _recoveryAttempt = json["recovery_attempt"];
-//     _recovered = json["recovered"];
-//   }
-//
-//   Map<String, dynamic> toJson() {
-//     var map = <String, dynamic>{};
-//     map["reused"] = _reused;
-//     map["recovery_attempt"] = _recoveryAttempt;
-//     map["recovered"] = _recovered;
-//     return map;
-//   }
-//
-// }

@@ -77,6 +77,7 @@ class _LaunchListScreenState extends State<LaunchListScreen> {
                   builder: (context) => new LaunchDetailScreen(
                       id: launchModel.id,
                       launchName: launchModel.name,
+                      launchModel: launchModel,
                       buildContext: context)));
         },
         child: Container(

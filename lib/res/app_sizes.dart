@@ -8,4 +8,5 @@ class AppSizes {
   static const double size220 = 220;
   static const double txtSize15 = 15;
   static const double txtSize20 = 20;
+  static const double size500 = 500;
 }
