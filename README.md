@@ -4,10 +4,11 @@ SpaceX Launches Demo App .
 
 Install Instructions
 
-1. Go to the path <project>/build/app/outputs/apk/debug/app-debug.apk
-2. Copy the apk file in android app.
-3. Double click the apk file and click install.
-4. App will be installed. Enjoy.
+1. run flutter build apk 
+2. Go to the path <project>/build/app/outputs/apk/debug/app-debug.apk
+3. Copy the apk file in android app.
+4. Double click the apk file and click install.
+5. App will be installed. Enjoy.
 
 Test Instructions
 
