@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:spacex_app/data/local/app_preferences.dart';
+import 'package:spacex_app/res/app_strings.dart';
 import 'package:spacex_app/ui/launchList/view/launch_list_screen.dart';
 import 'package:spacex_app/utils/view_utils.dart';
 import 'di/dependency_injection.dart' as di;
@@ -17,15 +19,16 @@ class MyApp extends StatelessWidget {
           if (snapshot.connectionState == ConnectionState.done) {
             return MaterialApp(
                 debugShowCheckedModeBanner: false,
-                builder: (BuildContext context, Widget child) {
-                  return LaunchListScreen();
-                });
+                title: AppStrings.appName,
+                home: LaunchListScreen());
           }
-          return showLoading();
+          return Scaffold(
+            appBar: AppBar(title: Center(child: Text(AppStrings.appName))));
         });
   }
 
   Future<void> awaitPreAppStartupDependencies() async {
+    await appPreferences.init();
     await di.init();
   }
 }

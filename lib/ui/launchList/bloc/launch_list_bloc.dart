@@ -9,6 +9,7 @@ import 'package:spacex_app/ui/launchList/model/launch_model.dart';
 import 'package:spacex_app/ui/launchList/repository/launch_list_repository.dart';
 
 part 'launch_list_event.dart';
+
 part 'launch_list_state.dart';
 
 class LaunchListBloc extends Bloc<LaunchListEvent, LaunchListState> {
@@ -19,6 +20,10 @@ class LaunchListBloc extends Bloc<LaunchListEvent, LaunchListState> {
     @required this.repository,
     @required this.preferences,
   }) : super(LaunchListInitial());
+
+  void getLaunchList() {
+    add(GetLaunchListEvent());
+  }
 
   @override
   Stream<LaunchListState> mapEventToState(

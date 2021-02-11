@@ -287,32 +287,32 @@ class Cores {
 
 class Failures {
   int _time;
-  dynamic _altitude;
+  // dynamic _altitude;
   String _reason;
 
   int get time => _time;
-  dynamic get altitude => _altitude;
+  // dynamic get altitude => _altitude;
   String get reason => _reason;
 
   Failures({
       int time, 
-      dynamic altitude, 
+      // dynamic altitude,
       String reason}){
     _time = time;
-    _altitude = altitude;
+    // _altitude = altitude;
     _reason = reason;
 }
 
   Failures.fromJson(dynamic json) {
     _time = json["time"];
-    _altitude = json["altitude"];
+    // _altitude = json["altitude"];
     _reason = json["reason"];
   }
 
   Map<String, dynamic> toJson() {
     var map = <String, dynamic>{};
     map["time"] = _time;
-    map["altitude"] = _altitude;
+    // map["altitude"] = _altitude;
     map["reason"] = _reason;
     return map;
   }
@@ -322,8 +322,7 @@ class Failures {
 class Links {
   Patch _patch;
   Reddit _reddit;
-  Flickr _flickr;
-  dynamic _presskit;
+  // dynamic _presskit;
   String _webcast;
   String _youtubeId;
   String _article;
@@ -331,8 +330,7 @@ class Links {
 
   Patch get patch => _patch;
   Reddit get reddit => _reddit;
-  Flickr get flickr => _flickr;
-  dynamic get presskit => _presskit;
+  // dynamic get presskit => _presskit;
   String get webcast => _webcast;
   String get youtubeId => _youtubeId;
   String get article => _article;
@@ -341,16 +339,14 @@ class Links {
   Links({
       Patch patch, 
       Reddit reddit, 
-      Flickr flickr, 
-      dynamic presskit, 
+      // dynamic presskit,
       String webcast, 
       String youtubeId, 
       String article, 
       String wikipedia}){
     _patch = patch;
     _reddit = reddit;
-    _flickr = flickr;
-    _presskit = presskit;
+    // _presskit = presskit;
     _webcast = webcast;
     _youtubeId = youtubeId;
     _article = article;
@@ -360,8 +356,7 @@ class Links {
   Links.fromJson(dynamic json) {
     _patch = json["patch"] != null ? Patch.fromJson(json["patch"]) : null;
     _reddit = json["reddit"] != null ? Reddit.fromJson(json["reddit"]) : null;
-    _flickr = json["flickr"] != null ? Flickr.fromJson(json["flickr"]) : null;
-    _presskit = json["presskit"];
+    // _presskit = json["presskit"];
     _webcast = json["webcast"];
     _youtubeId = json["youtube_id"];
     _article = json["article"];
@@ -376,10 +371,7 @@ class Links {
     if (_reddit != null) {
       map["reddit"] = _reddit.toJson();
     }
-    if (_flickr != null) {
-      map["flickr"] = _flickr.toJson();
-    }
-    map["presskit"] = _presskit;
+    // map["presskit"] = _presskit;
     map["webcast"] = _webcast;
     map["youtube_id"] = _youtubeId;
     map["article"] = _article;
@@ -389,54 +381,23 @@ class Links {
 
 }
 
-class Flickr {
-  List<String> _small;
-  List<String> _original;
-
-  List<String> get small => _small;
-  List<String> get original => _original;
-
-  Flickr({
-      List<String> small,
-      List<String> original}){
-    _small = small;
-    _original = original;
-}
-
-  Flickr.fromJson(dynamic json) {
-    if (json["small"] != null) {
-      _small = json["small"];
-    }
-    if (json["original"] != null) {
-      _original = json["original"];
-    }
-  }
-
-  Map<String, dynamic> toJson() {
-    var map = <String, dynamic>{};
-    map["small"] = _small;
-    map["original"] = _original;
-    return map;
-  }
-
-}
 
 class Reddit {
-  dynamic _campaign;
-  dynamic _launch;
-  dynamic _media;
-  dynamic _recovery;
+  String _campaign;
+  String _launch;
+  String _media;
+  String _recovery;
 
-  dynamic get campaign => _campaign;
-  dynamic get launch => _launch;
-  dynamic get media => _media;
-  dynamic get recovery => _recovery;
+  String get campaign => _campaign;
+  String get launch => _launch;
+  String get media => _media;
+  String get recovery => _recovery;
 
   Reddit({
-      dynamic campaign, 
-      dynamic launch, 
-      dynamic media, 
-      dynamic recovery}){
+    String campaign,
+    String launch,
+    String media,
+    String recovery}){
     _campaign = campaign;
     _launch = launch;
     _media = media;
@@ -503,8 +464,7 @@ class Fairings {
   Fairings({
       bool reused, 
       bool recoveryAttempt, 
-      bool recovered, 
-      List<dynamic> ships}){
+      bool recovered}){
     _reused = reused;
     _recoveryAttempt = recoveryAttempt;
     _recovered = recovered;
